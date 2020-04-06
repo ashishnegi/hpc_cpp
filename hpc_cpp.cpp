@@ -7,12 +7,6 @@
 // cl /Zi /EHsc /I google\x64-Release\include\ hpc_cpp.cpp  benchmark.lib benchmark_main.lib /link /Machine:X64 /libpath:".\google\x64-Debug\lib" /out:hpc_cpp.exe
 
 #include <benchmark/benchmark.h>
-#include "synchronization.h"
-
-// Register the function as a benchmark
-BENCHMARK(BM_Add);
-BENCHMARK(BM_MutexAdd);
-BENCHMARK(BM_AtomicAdd);
 
 // Run the benchmark
 BENCHMARK_MAIN();

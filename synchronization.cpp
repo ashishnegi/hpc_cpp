@@ -35,3 +35,8 @@ static void BM_AtomicAdd(benchmark::State& state) {
 
     benchmark::ClobberMemory();
 }
+
+// Register the function as a benchmark
+BENCHMARK(BM_Add);
+BENCHMARK(BM_MutexAdd);
+BENCHMARK(BM_AtomicAdd);
