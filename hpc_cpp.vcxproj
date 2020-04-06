@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="hpc_cpp.cpp" />
     <ClCompile Include="synchronization.cpp" />
+    <ClCompile Include="mutex_sync_falsesharing.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

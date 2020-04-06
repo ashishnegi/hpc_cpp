@@ -2,41 +2,62 @@
 #include <mutex>
 #include <atomic>
 
-static void BM_Add(benchmark::State& state) {
-    int add = 0;
+static void BM_noLockAdd(benchmark::State& state) {
+    long add = 0;
 
     for (auto _ : state) {
-        add += 1;
-        benchmark::DoNotOptimize(add);
+        benchmark::DoNotOptimize(add++);
     }
 
     benchmark::ClobberMemory();
 }
 
-static void BM_MutexAdd(benchmark::State& state) {
-    std::mutex lock;
-    int add = 0;
+volatile long mutex_add = 0;
+std::mutex mutex_lock;
 
-    for (auto _ : state) {
-        std::lock_guard<std::mutex> guard(lock);
-        add += 1;
-        benchmark::DoNotOptimize(add);
+static void BM_MultiThreadedMutexAdd(benchmark::State& state) {
+    if (state.thread_index == 0) {
+        mutex_add = 0;
+    }
+
+    while (state.KeepRunning()) {
+        std::lock_guard<std::mutex> guard(mutex_lock);
+        mutex_add += 1;
+        benchmark::DoNotOptimize(mutex_add);
     }
 
     benchmark::ClobberMemory();
 }
 
-static void BM_AtomicAdd(benchmark::State& state) {
-    std::atomic_int add = 0;
-    for (auto _ : state) {
-        add++;
-        benchmark::DoNotOptimize(add);
+std::atomic_long atomic_add = 0;
+
+static void BM_MultiThreadedAtomicAdd(benchmark::State& state) {
+    if (state.thread_index == 0) {
+        atomic_add = 0;
+    }
+
+    while (state.KeepRunning()) {
+        benchmark::DoNotOptimize(atomic_add++);
     }
 
     benchmark::ClobberMemory();
 }
+
+#define ARGS(N) ->Threads(N)->UseRealTime();
 
 // Register the function as a benchmark
-BENCHMARK(BM_Add);
-BENCHMARK(BM_MutexAdd);
-BENCHMARK(BM_AtomicAdd);
+BENCHMARK(BM_noLockAdd);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(1);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(2);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(4);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(8);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(12);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(16);
+BENCHMARK(BM_MultiThreadedMutexAdd) ARGS(32);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(1);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(2);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(4);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(8);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(12);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(16);
+BENCHMARK(BM_MultiThreadedAtomicAdd) ARGS(32);
