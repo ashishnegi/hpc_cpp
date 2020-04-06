@@ -1,26 +1,26 @@
 // hpc_cpp.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <benchmark/benchmark.h>
+// tried separating benchmark in different executables.
+// will use
+// x64\Release\hpc_cpp.exe --benchmark_filter=.*Add.*
+// cl /Zi /EHsc /I google\x64-Release\include\ hpc_cpp.cpp  benchmark.lib benchmark_main.lib /link /Machine:X64 /libpath:".\google\x64-Debug\lib" /out:hpc_cpp.exe
 
-static void BM_Add(benchmark::State& state) {
-    int add = 0;
-    // Perform setup here
-    for (auto _ : state) {
-        // This code gets timed
-        add += 1;
-    }
-}
+#include <benchmark/benchmark.h>
+#include "synchronization.h"
 
 // Register the function as a benchmark
 BENCHMARK(BM_Add);
+BENCHMARK(BM_MutexAdd);
+BENCHMARK(BM_AtomicAdd);
+
 // Run the benchmark
 BENCHMARK_MAIN();
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
+// Tips for Getting Started:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
