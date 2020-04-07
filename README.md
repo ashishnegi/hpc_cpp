@@ -156,4 +156,60 @@ BM_ReadSeq<long>/65536/real_time          2957 ns         2955 ns       253802
 BM_ReadSeq<long>/262144/real_time        12674 ns        12691 ns        60329
 BM_ReadSeq<long>/1048576/real_time       62379 ns        60212 ns         8823
 BM_ReadSeq<long>/2097152/real_time      103878 ns       104949 ns         5062
+
+> x64\Release\hpc_cpp.exe --benchmark_filter=.*Write.*long.*
+04/07/20 02:03:41
+Running x64\Release\hpc_cpp.exe
+Run on (8 X 2808 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 6144 KiB (x1)
+
+-----------------------------------------------------------------------------------
+Benchmark                                         Time             CPU   Iterations
+-----------------------------------------------------------------------------------
+BM_WriteSeq<long>/1024/real_time               80.5 ns         75.7 ns      6807736
+BM_WriteSeq<long>/2048/real_time                155 ns          152 ns      3801941
+BM_WriteSeq<long>/4096/real_time                302 ns          299 ns      2142263
+BM_WriteSeq<long>/8192/real_time                578 ns          580 ns      1078232
+BM_WriteSeq<long>/16384/real_time              1217 ns         1204 ns       596882
+BM_WriteSeq<long>/32768/real_time              2395 ns         2362 ns       284479
+BM_WriteSeq<long>/65536/real_time              5084 ns         5186 ns       135575
+BM_WriteSeq<long>/131072/real_time            10018 ns        10021 ns        68608
+BM_WriteSeq<long>/262144/real_time            21123 ns        21841 ns        32909
+BM_WriteSeq<long>/524288/real_time            44714 ns        45165 ns        15914
+BM_WriteSeq<long>/1048576/real_time           89513 ns        90295 ns         7787
+BM_WriteSeq<long>/2097152/real_time          179313 ns       178434 ns         3240
+BM_WriteSeq<long>/4194304/real_time          384678 ns       379415 ns         1812
+BM_WriteSeq<long>/8388608/real_time          773888 ns       776007 ns          745
+BM_WriteRand<long>/1024/real_time              83.7 ns         82.5 ns      8522098
+BM_WriteRand<long>/2048/real_time               171 ns          171 ns      4214316
+BM_WriteRand<long>/4096/real_time               334 ns          334 ns      2010351
+BM_WriteRand<long>/8192/real_time               681 ns          674 ns      1043684
+BM_WriteRand<long>/16384/real_time             1341 ns         1374 ns       488911
+BM_WriteRand<long>/32768/real_time             5596 ns         5497 ns       122229
+BM_WriteRand<long>/65536/real_time            17415 ns        17341 ns        35141
+BM_WriteRand<long>/131072/real_time           38455 ns        38305 ns        17948
+BM_WriteRand<long>/262144/real_time           94041 ns        95158 ns         5747
+BM_WriteRand<long>/524288/real_time          260762 ns       264069 ns         2781
+BM_WriteRand<long>/1048576/real_time         544935 ns       529063 ns         1329
+BM_WriteRand<long>/2097152/real_time        1141083 ns      1133675 ns          634
+BM_WriteRand<long>/4194304/real_time        2515579 ns      2513112 ns          286
+BM_WriteRand<long>/8388608/real_time       10066549 ns      9982639 ns           72
+BM_WriteSeqIndex<long>/1024/real_time          86.0 ns         85.2 ns      8437954
+BM_WriteSeqIndex<long>/2048/real_time           168 ns          168 ns      3339633
+BM_WriteSeqIndex<long>/4096/real_time           336 ns          349 ns      2058408
+BM_WriteSeqIndex<long>/8192/real_time           670 ns          655 ns      1049404
+BM_WriteSeqIndex<long>/16384/real_time         1368 ns         1344 ns       511510
+BM_WriteSeqIndex<long>/32768/real_time         2980 ns         2958 ns       237714
+BM_WriteSeqIndex<long>/65536/real_time         5909 ns         5775 ns       116342
+BM_WriteSeqIndex<long>/131072/real_time       11932 ns        11654 ns        45584
+BM_WriteSeqIndex<long>/262144/real_time       24829 ns        24783 ns        24588
+BM_WriteSeqIndex<long>/524288/real_time       49433 ns        48878 ns        13746
+BM_WriteSeqIndex<long>/1048576/real_time     101914 ns       102258 ns         5348
+BM_WriteSeqIndex<long>/2097152/real_time     207123 ns       208025 ns         3380
+BM_WriteSeqIndex<long>/4194304/real_time     487370 ns       457418 ns         1503
+BM_WriteSeqIndex<long>/8388608/real_time    1240509 ns      1243219 ns          553
 ```

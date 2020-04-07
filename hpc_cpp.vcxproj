@@ -157,6 +157,7 @@
     <ClCompile Include="synchronization.cpp" />
     <ClCompile Include="mutex_sync_falsesharing.cpp" />
     <ClCompile Include="memory_write_read.cpp" />
+    <ClCompile Include="memory_write_read_rand.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
