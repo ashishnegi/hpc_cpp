@@ -39,7 +39,7 @@ static void BM_ReadSeq(benchmark::State& state) {
     }
 }
 
-#define ARGS() ->RangeMultiplier(4)->Range(1024, 2*1024*1024)->UseRealTime();
+#define ARGS() ->RangeMultiplier(4)->Range(1024, 8*1024*1024)->UseRealTime();
 
 // Register the function as a benchmark
 BENCHMARK_TEMPLATE(BM_WriteSeq, char) ARGS();
