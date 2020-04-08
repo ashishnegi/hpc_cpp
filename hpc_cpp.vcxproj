@@ -158,6 +158,7 @@
     <ClCompile Include="mutex_sync_falsesharing.cpp" />
     <ClCompile Include="memory_write_read.cpp" />
     <ClCompile Include="memory_write_read_rand.cpp" />
+    <ClCompile Include="memory_write_read_rand_threads.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
