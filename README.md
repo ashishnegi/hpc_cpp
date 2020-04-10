@@ -220,17 +220,32 @@ BM_WriteSeqIndex<long>/2097152/real_time     207123 ns       208025 ns         3
 BM_WriteSeqIndex<long>/4194304/real_time     487370 ns       457418 ns         1503
 BM_WriteSeqIndex<long>/8388608/real_time    1240509 ns      1243219 ns          553
 
---------------------------------------------------------------------------------------
-Benchmark                                            Time             CPU   Iterations
---------------------------------------------------------------------------------------
-BM_FalseSharing2Global/real_time/threads:1        7.56 ns         7.35 ns     76480749
-BM_FalseSharing2Global/real_time/threads:2        15.7 ns         31.7 ns     50719438
-BM_FalseSharing2Global/real_time/threads:4        18.5 ns         73.3 ns     42219032
-BM_FalseSharing2Global/real_time/threads:8        18.6 ns          141 ns     38052232
-BM_FalseSharing2Global/real_time/threads:12       18.1 ns          144 ns     39998292
-BM_FalseSharing2Local/real_time/threads:1         8.58 ns         8.43 ns     90861536
-BM_FalseSharing2Local/real_time/threads:2         4.08 ns         8.12 ns    163610462
-BM_FalseSharing2Local/real_time/threads:4         2.34 ns         9.17 ns    310026192
-BM_FalseSharing2Local/real_time/threads:8         1.70 ns         13.0 ns    415677920
-BM_FalseSharing2Local/real_time/threads:12        1.60 ns         12.3 ns    470827296
+-----------------------------------------------------------------------------------------
+Benchmark                                               Time             CPU   Iterations
+-----------------------------------------------------------------------------------------
+BM_FalseSharing2Global/0/real_time/threads:1         8045 ns         8252 ns        77628
+BM_FalseSharing2Global/0/real_time/threads:2        21589 ns        42323 ns        36180
+BM_FalseSharing2Global/0/real_time/threads:4        22140 ns        85201 ns        32460
+BM_FalseSharing2Global/0/real_time/threads:8        22177 ns       168493 ns        31344
+BM_FalseSharing2Global/0/real_time/threads:12       20661 ns       172138 ns        33948
+BM_FalseSharing2Global/4/real_time/threads:1         7706 ns         7625 ns        92211
+BM_FalseSharing2Global/4/real_time/threads:2        20841 ns        41101 ns        52462
+BM_FalseSharing2Global/4/real_time/threads:4        21932 ns        87557 ns        31408
+BM_FalseSharing2Global/4/real_time/threads:8         9797 ns        71734 ns        71880
+BM_FalseSharing2Global/4/real_time/threads:12        9327 ns        78036 ns        77088
+BM_FalseSharing2Global/8/real_time/threads:1         8328 ns         8362 ns        71002
+BM_FalseSharing2Global/8/real_time/threads:2        19970 ns        37417 ns        34660
+BM_FalseSharing2Global/8/real_time/threads:4         6139 ns        24081 ns       138856
+BM_FalseSharing2Global/8/real_time/threads:8         6477 ns        48438 ns        80000
+BM_FalseSharing2Global/8/real_time/threads:12        5296 ns        42336 ns       155748
+BM_FalseSharing2Global/16/real_time/threads:1        8343 ns         8140 ns        92139
+BM_FalseSharing2Global/16/real_time/threads:2        4093 ns         8303 ns       180652
+BM_FalseSharing2Global/16/real_time/threads:4        2334 ns         9175 ns       274168
+BM_FalseSharing2Global/16/real_time/threads:8        1711 ns        13274 ns       409624
+BM_FalseSharing2Global/16/real_time/threads:12       1660 ns        13359 ns       443292
+BM_FalseSharing2Local/0/real_time/threads:1          7677 ns         7178 ns        91421
+BM_FalseSharing2Local/0/real_time/threads:2          3959 ns         7926 ns       177424
+BM_FalseSharing2Local/0/real_time/threads:4          2187 ns         8485 ns       338828
+BM_FalseSharing2Local/0/real_time/threads:8          1705 ns        13390 ns       410752
+BM_FalseSharing2Local/0/real_time/threads:12         1673 ns        12735 ns       434340
 ```

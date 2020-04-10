@@ -4,18 +4,21 @@
 
 namespace false_sharing
 {
-    const int NumThreads = 12;
-    std::atomic_int global_nonshared[NumThreads];
+    const int N = 1024;
+    std::atomic_int global_nonshared[4096];
 
     static void BM_FalseSharing2Global(benchmark::State& state) {
         if (state.thread_index == 0) {
-            for (int i = 0; i < NumThreads; ++i) {
+            for (int i = 0; i < sizeof(global_nonshared)/sizeof(global_nonshared[0]); ++i) {
                 global_nonshared[i] = 0;
             }
         }
 
+        size_t pos = state.range_x() * state.thread_index;
         while (state.KeepRunning()) {
-            benchmark::DoNotOptimize(global_nonshared[state.thread_index]++);
+            for (int i = 0; i < N; ++i) {
+                benchmark::DoNotOptimize(global_nonshared[pos]++);
+            }
         }
 
         benchmark::ClobberMemory();
@@ -25,24 +28,41 @@ namespace false_sharing
         std::atomic_int local_nonshared = 0;
 
         while (state.KeepRunning()) {
-            benchmark::DoNotOptimize(local_nonshared++);
+            for (int i = 0; i < N; ++i) {
+                benchmark::DoNotOptimize(local_nonshared++);
+            }
         }
 
         benchmark::ClobberMemory();
     }
 
-    #define ARGS(N) ->Threads(N)->UseRealTime();
+    #define ARGS(N, M) ->Threads(N)->Arg(M)->UseRealTime();
 
     // Register the function as a benchmark
-    BENCHMARK(BM_FalseSharing2Global) ARGS(1);
-    BENCHMARK(BM_FalseSharing2Global) ARGS(2);
-    BENCHMARK(BM_FalseSharing2Global) ARGS(4);
-    BENCHMARK(BM_FalseSharing2Global) ARGS(8);
-    BENCHMARK(BM_FalseSharing2Global) ARGS(12);
-    BENCHMARK(BM_FalseSharing2Local) ARGS(1);
-    BENCHMARK(BM_FalseSharing2Local) ARGS(2);
-    BENCHMARK(BM_FalseSharing2Local) ARGS(4);
-    BENCHMARK(BM_FalseSharing2Local) ARGS(8);
-    BENCHMARK(BM_FalseSharing2Local) ARGS(12);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(1, 0);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(2, 0);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(4, 0);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(8, 0);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(12, 0);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(1, 4);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(2, 4);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(4, 4);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(8, 4);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(12, 4);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(1, 8);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(2, 8);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(4, 8);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(8, 8);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(12, 8);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(1, 16);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(2, 16);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(4, 16);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(8, 16);
+    BENCHMARK(BM_FalseSharing2Global) ARGS(12, 16);
+    BENCHMARK(BM_FalseSharing2Local) ARGS(1, 0);
+    BENCHMARK(BM_FalseSharing2Local) ARGS(2, 0);
+    BENCHMARK(BM_FalseSharing2Local) ARGS(4, 0);
+    BENCHMARK(BM_FalseSharing2Local) ARGS(8, 0);
+    BENCHMARK(BM_FalseSharing2Local) ARGS(12, 0);
 } // namespace false_sharing
 
