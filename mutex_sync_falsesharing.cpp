@@ -2,7 +2,7 @@
 #include <mutex>
 #include <atomic>
 
-namespace false_sharing
+namespace mutex_false_sharing
 {
     volatile long mutex_add_before = 0;
     std::mutex mutex_lock;

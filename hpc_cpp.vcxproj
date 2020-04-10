@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="hpc_cpp.cpp" />
+    <ClCompile Include="falsesharing.cpp" />
     <ClCompile Include="synchronization.cpp" />
     <ClCompile Include="mutex_sync_falsesharing.cpp" />
     <ClCompile Include="memory_write_read.cpp" />

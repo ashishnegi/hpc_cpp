@@ -4,9 +4,11 @@
 
 static void BM_noLockAdd(benchmark::State& state) {
     long add = 0;
-
+    int N = 1024;
     for (auto _ : state) {
-        benchmark::DoNotOptimize(add++);
+        for (int i = 0; i < N; ++i) {
+            benchmark::DoNotOptimize(add++);
+        }
     }
 
     benchmark::ClobberMemory();
@@ -20,10 +22,13 @@ static void BM_MultiThreadedMutexAdd(benchmark::State& state) {
         mutex_add = 0;
     }
 
+    int N = 1024;
     while (state.KeepRunning()) {
-        std::lock_guard<std::mutex> guard(mutex_lock);
-        mutex_add += 1;
-        benchmark::DoNotOptimize(mutex_add);
+        for (int i = 0; i < N; ++i) {
+            std::lock_guard<std::mutex> guard(mutex_lock);
+            mutex_add += 1;
+            benchmark::DoNotOptimize(mutex_add);
+        }
     }
 
     benchmark::ClobberMemory();
@@ -36,8 +41,11 @@ static void BM_MultiThreadedAtomicAdd(benchmark::State& state) {
         atomic_add = 0;
     }
 
+    int N = 1024;
     while (state.KeepRunning()) {
-        benchmark::DoNotOptimize(atomic_add++);
+        for (int i = 0; i < N; ++i) {
+            benchmark::DoNotOptimize(atomic_add++);
+        }
     }
 
     benchmark::ClobberMemory();

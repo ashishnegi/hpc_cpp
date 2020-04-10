@@ -219,4 +219,18 @@ BM_WriteSeqIndex<long>/1048576/real_time     101914 ns       102258 ns         5
 BM_WriteSeqIndex<long>/2097152/real_time     207123 ns       208025 ns         3380
 BM_WriteSeqIndex<long>/4194304/real_time     487370 ns       457418 ns         1503
 BM_WriteSeqIndex<long>/8388608/real_time    1240509 ns      1243219 ns          553
+
+--------------------------------------------------------------------------------------
+Benchmark                                            Time             CPU   Iterations
+--------------------------------------------------------------------------------------
+BM_FalseSharing2Global/real_time/threads:1        7.56 ns         7.35 ns     76480749
+BM_FalseSharing2Global/real_time/threads:2        15.7 ns         31.7 ns     50719438
+BM_FalseSharing2Global/real_time/threads:4        18.5 ns         73.3 ns     42219032
+BM_FalseSharing2Global/real_time/threads:8        18.6 ns          141 ns     38052232
+BM_FalseSharing2Global/real_time/threads:12       18.1 ns          144 ns     39998292
+BM_FalseSharing2Local/real_time/threads:1         8.58 ns         8.43 ns     90861536
+BM_FalseSharing2Local/real_time/threads:2         4.08 ns         8.12 ns    163610462
+BM_FalseSharing2Local/real_time/threads:4         2.34 ns         9.17 ns    310026192
+BM_FalseSharing2Local/real_time/threads:8         1.70 ns         13.0 ns    415677920
+BM_FalseSharing2Local/real_time/threads:12        1.60 ns         12.3 ns    470827296
 ```
