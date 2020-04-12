@@ -14,7 +14,7 @@ static void BM_WriteSeq(benchmark::State& state) {
     void* const end = vec1.data() + vec1.size();
     Word* const pStart = static_cast<Word*>(start);
     Word* const pEnd = static_cast<Word*>(end);
-    register Word fill(0);
+    Word fill(0);
 
     while (state.KeepRunning()) {
         for (volatile Word *p = pStart; p < pEnd;) {
@@ -30,7 +30,7 @@ static void BM_ReadSeq(benchmark::State& state) {
     void* const end = vec1.data() + vec1.size();
     Word* const pStart = static_cast<Word*>(start);
     Word* const pEnd = static_cast<Word*>(end);
-    register Word fill(0);
+    Word fill(0);
 
     while (state.KeepRunning()) {
         for (volatile Word *p = pStart; p < pEnd;) {

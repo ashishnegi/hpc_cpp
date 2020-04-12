@@ -1,3 +1,5 @@
 .vs
 *.vcxproj.user
 x64
+Release
+.vscode

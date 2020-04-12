@@ -2,6 +2,7 @@
 #include <mutex>
 #include <atomic>
 #include <algorithm>
+#include <random>
 
 #define REPEAT2(x) x x
 #define REPEAT8(x) REPEAT2(x) REPEAT2(x) REPEAT2(x) REPEAT2(x)
@@ -13,14 +14,17 @@ static void BM_WriteRand(benchmark::State& state) {
     std::vector<char> vec1(state.range(0));
     void* const start = vec1.data();
     Word* const pStart = static_cast<Word*>(start);
-    register Word fill(0);
+    Word fill(0);
 
     size_t size = vec1.size() / sizeof(Word);
     std::vector<int> randPos(size);
     for (int i = 0; i < randPos.size(); ++i) {
         randPos[i] = i;
     }
-    std::random_shuffle(randPos.begin(), randPos.end());
+
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(randPos.begin(), randPos.end(), g);
 
     while (state.KeepRunning()) {
         for (int pos = 0; pos < randPos.size();) {
@@ -34,7 +38,7 @@ static void BM_WriteSeqIndex(benchmark::State& state) {
     std::vector<char> vec1(state.range(0));
     void* const start = vec1.data();
     Word* const pStart = static_cast<Word*>(start);
-    register Word fill(0);
+    Word fill(0);
 
     size_t size = vec1.size() / sizeof(Word);
     std::vector<int> randPos(size);
