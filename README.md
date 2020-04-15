@@ -248,4 +248,17 @@ BM_FalseSharing2Local/0/real_time/threads:2          3959 ns         7926 ns    
 BM_FalseSharing2Local/0/real_time/threads:4          2187 ns         8485 ns       338828
 BM_FalseSharing2Local/0/real_time/threads:8          1705 ns        13390 ns       410752
 BM_FalseSharing2Local/0/real_time/threads:12         1673 ns        12735 ns       434340
+
+-------------------------------------------------------------------------------
+Benchmark                                     Time             CPU   Iterations
+-------------------------------------------------------------------------------
+BM_noSpinlockAdd/real_time/threads:1       2.80 ns         2.78 ns    287040412
+BM_noSpinlockAdd/real_time/threads:4       4.18 ns         16.5 ns    166655904
+BM_noSpinlockAdd/real_time/threads:8       3.79 ns         27.2 ns    185828824
+BM_SpinlockAdd/real_time/threads:1         17.7 ns         17.2 ns     43576185
+BM_SpinlockAdd/real_time/threads:2         28.2 ns         35.2 ns     31512950
+BM_SpinlockAdd/real_time/threads:4         39.5 ns         77.8 ns     17666648
+BM_SpinlockAdd/real_time/threads:8         41.4 ns          145 ns     12505368
+BM_SpinlockAdd/real_time/threads:12        38.1 ns          128 ns     13654572
+BM_SpinlockAdd/real_time/threads:16        31.9 ns          117 ns     18132496
 ```
