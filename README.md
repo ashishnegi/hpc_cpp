@@ -250,15 +250,61 @@ BM_FalseSharing2Local/0/real_time/threads:8          1705 ns        13390 ns    
 BM_FalseSharing2Local/0/real_time/threads:12         1673 ns        12735 ns       434340
 
 -------------------------------------------------------------------------------
-Benchmark                                     Time             CPU   Iterations
+Benchmark                                             Time             CPU   Iterations
 -------------------------------------------------------------------------------
-BM_noSpinlockAdd/real_time/threads:1       2.80 ns         2.78 ns    287040412
-BM_noSpinlockAdd/real_time/threads:4       4.18 ns         16.5 ns    166655904
-BM_noSpinlockAdd/real_time/threads:8       3.79 ns         27.2 ns    185828824
-BM_SpinlockAdd/real_time/threads:1         17.7 ns         17.2 ns     43576185
-BM_SpinlockAdd/real_time/threads:2         28.2 ns         35.2 ns     31512950
-BM_SpinlockAdd/real_time/threads:4         39.5 ns         77.8 ns     17666648
-BM_SpinlockAdd/real_time/threads:8         41.4 ns          145 ns     12505368
-BM_SpinlockAdd/real_time/threads:12        38.1 ns          128 ns     13654572
-BM_SpinlockAdd/real_time/threads:16        31.9 ns          117 ns     18132496
+BM_noSpinlockAdd/real_time/threads:1               2.80 ns         2.78 ns    287040412
+BM_noSpinlockAdd/real_time/threads:4               4.18 ns         16.5 ns    166655904
+BM_noSpinlockAdd/real_time/threads:8               3.79 ns         27.2 ns    185828824
+BM_SpinlockAdd/real_time/threads:1                 30.8 ns         30.5 ns     27688855
+BM_SpinlockAdd/real_time/threads:2                 27.3 ns         36.4 ns     29226724
+BM_SpinlockAdd/real_time/threads:4                 41.1 ns         58.5 ns     12548308
+BM_SpinlockAdd/real_time/threads:8                 43.2 ns         97.4 ns     14915368
+BM_SpinlockAdd/real_time/threads:12                40.2 ns          108 ns     18623028
+BM_SpinlockAdd/real_time/threads:16                34.1 ns          105 ns     22056336
+BM_SpinlockOptimizedAdd/real_time/threads:1        9.62 ns         9.80 ns     55778626
+BM_SpinlockOptimizedAdd/real_time/threads:2        17.2 ns         23.7 ns     44815658
+BM_SpinlockOptimizedAdd/real_time/threads:4        24.3 ns         40.0 ns     28144868
+BM_SpinlockOptimizedAdd/real_time/threads:8        23.0 ns         66.3 ns     28519944
+BM_SpinlockOptimizedAdd/real_time/threads:12       19.0 ns         65.4 ns     27222024
+BM_SpinlockOptimizedAdd/real_time/threads:16       21.0 ns         79.0 ns     37160128
 ```
+
+After changing the `Processor power management`'s `Minimum processor state` to 100%:
+![](memory_benchmarks/power_management.PNG)
+
+```
+> x64\Release\hpc_cpp.exe --benchmark_filter=.*_Spinlock.*
+04/15/20 01:47:12
+Running x64\Release\hpc_cpp.exe
+Run on (8 X 2808 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 256 KiB (x4)
+  L3 Unified 6144 KiB (x1)
+---------------------------------------------------------------------------------------
+Benchmark                                             Time             CPU   Iterations
+---------------------------------------------------------------------------------------
+BM_SpinlockAdd/real_time/threads:1                 14.6 ns         14.7 ns     47942283
+BM_SpinlockAdd/real_time/threads:2                 14.5 ns         14.7 ns     51161242
+BM_SpinlockAdd/real_time/threads:4                 13.6 ns         15.1 ns     46700192
+BM_SpinlockAdd/real_time/threads:8                 11.2 ns         14.2 ns     53871184
+BM_SpinlockAdd/real_time/threads:12                12.7 ns         14.8 ns     67645728
+BM_SpinlockAdd/real_time/threads:16                11.5 ns         13.4 ns     56972752
+BM_SpinlockOptimizedAdd/real_time/threads:1        8.47 ns         8.51 ns     82601523
+BM_SpinlockOptimizedAdd/real_time/threads:2        7.96 ns         8.34 ns     86157240
+BM_SpinlockOptimizedAdd/real_time/threads:4        7.92 ns         8.40 ns     89237412
+BM_SpinlockOptimizedAdd/real_time/threads:8        7.51 ns         8.21 ns     79913288
+BM_SpinlockOptimizedAdd/real_time/threads:12       7.48 ns         8.31 ns     88335972
+BM_SpinlockOptimizedAdd/real_time/threads:16       8.02 ns         8.20 ns     87600608
+
+------------------------------------------------------------------------------------------
+Benchmark                                                Time             CPU   Iterations
+------------------------------------------------------------------------------------------
+BM_FalseSharingMutexAddFar/real_time/threads:1        24.9 ns         24.8 ns     27076015
+BM_FalseSharingMutexAddFar/real_time/threads:2        26.5 ns         52.3 ns     20000000
+BM_FalseSharingMutexAddFar/real_time/threads:4        32.8 ns          133 ns     19696064
+BM_FalseSharingMutexAddFar/real_time/threads:8        37.1 ns          296 ns     17728792
+BM_FalseSharingMutexAddFar/real_time/threads:12       37.9 ns          328 ns     18084024
+```
+
