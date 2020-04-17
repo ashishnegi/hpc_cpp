@@ -25,11 +25,13 @@ In Developer command prompt for X64, interactive developer command prompt:
 ```
 
 ## About real time from google benchmark docs
+```
 // Measure the user-visible time, the wall clock (literally, the time that
 // has passed on the clock on the wall), use it to decide for how long to
 // run the benchmark loop. This will always be meaningful, an will match the
 // time spent by the main thread in single-threaded case, in general decreasing
 // with the number of internal threads doing the work.
+```
 
 ```
 04/05/20 22:12:26
@@ -272,6 +274,8 @@ BM_SpinlockOptimizedAdd/real_time/threads:16       21.0 ns         79.0 ns     3
 After changing the `Processor power management`'s `Minimum processor state` to 100%:
 ![](memory_benchmarks/power_management.PNG)
 
+Note that performance is relative, so above numbers are high but good for comparing different implementations.
+
 ```
 > x64\Release\hpc_cpp.exe --benchmark_filter=.*_Spinlock.*
 04/15/20 01:47:12
@@ -306,5 +310,13 @@ BM_FalseSharingMutexAddFar/real_time/threads:2        26.5 ns         52.3 ns   
 BM_FalseSharingMutexAddFar/real_time/threads:4        32.8 ns          133 ns     19696064
 BM_FalseSharingMutexAddFar/real_time/threads:8        37.1 ns          296 ns     17728792
 BM_FalseSharingMutexAddFar/real_time/threads:12       37.9 ns          328 ns     18084024
+
+------------------------------------------------------------------------
+Benchmark                              Time             CPU   Iterations
+------------------------------------------------------------------------
+BM_CASAdd/real_time/threads:1       9.25 ns         9.18 ns     74870234
+BM_CASAdd/real_time/threads:2       44.6 ns         89.8 ns     21567922
+BM_CASAdd/real_time/threads:4       59.5 ns          235 ns     11876736
+BM_CASAdd/real_time/threads:8       81.4 ns          646 ns      9894840
 ```
 
