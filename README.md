@@ -320,3 +320,6 @@ BM_CASAdd/real_time/threads:4       59.5 ns          235 ns     11876736
 BM_CASAdd/real_time/threads:8       81.4 ns          646 ns      9894840
 ```
 
+![Memory Access Costs](memory_benchmarks/memory_access_cost.PNG)
+![memory_benchmarks/memory_bandwidth_threaded](memory_benchmarks/memory_bandwidth_threaded.PNG)
+![memory_benchmarks/memory_seq_vs_rand_write](memory_benchmarks/memory_seq_vs_rand_write.PNG)
